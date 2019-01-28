@@ -10,6 +10,8 @@ import rootReducer from './redux/reducers/rootReducer'
 import { getFirebase, reactReduxFirebase } from 'react-redux-firebase'
 import { getFirestore, reduxFirestore } from 'redux-firestore'
 import firebaseConfig from './config/firebaseConfig'
+
+
 const store = createStore(
     rootReducer,
     compose(
