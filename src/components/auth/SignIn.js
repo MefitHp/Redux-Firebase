@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { signIn } from '../../redux/actions/authActions';
+import { signIn } from '../../redux/actions/authActions'
+import { Redirect } from 'react-router-dom'
 
 
 class SignIn extends Component {
@@ -22,8 +23,9 @@ class SignIn extends Component {
     }
 
     render() {
-        const { authError } = this.props
+        const { authError, auth } = this.props
         const { handleSubmit, handleChange } = this
+        if (auth.uid) return <Redirect to="/" />
         return (
             <div className="container">
                 <form className="white" onSubmit={handleSubmit}>
@@ -49,7 +51,8 @@ class SignIn extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        authError: state.auth.authError
+        authError: state.auth.authError,
+        auth: state.firebase.auth
     }
 }
 const mapDispatchToProps = (dispatch) => {
